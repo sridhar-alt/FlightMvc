@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FlightData.Flight>
+
+@{
+    ViewBag.Title = "DisplayFlight";
+}
+<head>
+    <style>        #table {
+            border:dotted;
+            border-spacing:10px;
+        } </style>
+</head>
+<h2>DisplayFlight ViewData</h2>
+<table class="table">
+    @foreach(FlightData.Flight item in (List<FlightData.Flight>)ViewData["flight"])
+    {
+        <tr>
+            <td>
+                @item.Filght_Id
+            </td>
+            <td>
+                @item.Flight_Name
+            </td>
+            <td>
+                @item.Flight_Number
+            </td>
+            <td>
+                @item.Flight_Amount
+            </td>
+        </tr>
+    }
+</table>
+<h2>DisplayFlight TempData</h2>
+<table class="table">
+    @foreach (FlightData.Flight item in ViewBag.flight)
+    {
+        <tr>
+            <td>
+                @item.Filght_Id
+            </td>
+            <td>
+                @item.Flight_Name
+            </td>
+            <td>
+                @item.Flight_Number
+            </td>
+            <td>
+                @item.Flight_Amount
+            </td>
+        </tr>
+    }
+</table>
+
