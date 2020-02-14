@@ -15,10 +15,36 @@ namespace FlightMvc.Controllers
         public ActionResult DisplayFlight()
         {
             IEnumerable<Flight> flight = FlightRepository.GetDetails();
-            ViewBag.flight = flight;
-            ViewData["flight"] = flight;
-            TempData["flight"] = flight;
-            return View();
+            return View(flight);
+        }
+        public ActionResult AddFlight()
+        {
+            return View("AddFlight");
+        }
+        [HttpPost]
+        public ActionResult AddFlight(Flight flight)
+        {
+            FlightRepository.flight.Add(flight);
+            TempData["message"] = "Added Successful";
+            return RedirectToAction("DisplayFlight");
+        }
+        public ActionResult EditFlight(int FlightId)
+        {
+            Flight flight=FlightRepository.FindFlightId(FlightId);
+            return View(flight);
+        }
+        public ActionResult UpdateFlights(Flight flight)
+        {
+            FlightRepository.UpdateFlight(flight.Flight_Id, flight.Flight_Amount, flight.Flight_Name, flight.Flight_Number);
+            TempData["Message"] = "Updated Successfully";
+            return RedirectToAction("DisplayFlight");
+        }
+
+        public ActionResult DeleteFlight(int flightId)
+        {
+            FlightRepository.DeleteFlight(flightId);
+            TempData["Message"] = "Deleted Successfully";
+            return RedirectToAction("DisplayFlight");
         }
     }
 }

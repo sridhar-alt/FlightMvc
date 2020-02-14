@@ -1,0 +1,37 @@
+﻿@model FlightData.Flight
+
+@{
+    ViewBag.Title = "AddFlight";
+}
+
+<h2>AddFlight</h2>
+
+@using(Html.BeginForm("AddFlight","Flight",FormMethod.Post))
+{
+<table>
+    <tr>
+        <td>FlightId</td>
+        <td>@Html.EditorFor(model => model.Flight_Id)</td>
+    </tr>
+    <tr>
+        <td>FlightNmae</td>
+        <td>@Html.EditorFor(model => model.Flight_Name)</td>
+    </tr>
+    <tr>
+        <td>FlightNumber</td>
+        <td>@Html.EditorFor(model => model.Flight_Number)</td>
+    </tr>
+    <tr>
+        <td>FlightAmount</td>
+        <td>@Html.EditorFor(model => model.Flight_Amount)</td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" runat="server"/>
+        </td>
+    </tr>
+</table>
+}
+<div>
+    @Html.ActionLink("Back","DisplayFlight")
+</div>

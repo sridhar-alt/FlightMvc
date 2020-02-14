@@ -10,12 +10,17 @@
         } </style>
 </head>
 <h2>DisplayFlight ViewData</h2>
+@Html.ActionLink("AddFlight","AddFlight")
+@if(TempData["message"]!=null)
+{
+    @Html.Label((string)TempData["message"])
+}
 <table class="table">
-    @foreach(FlightData.Flight item in (List<FlightData.Flight>)ViewData["flight"])
+    @foreach(FlightData.Flight item in @Model)
     {
         <tr>
             <td>
-                @item.Filght_Id
+                @item.Flight_Id
             </td>
             <td>
                 @item.Flight_Name
@@ -26,25 +31,9 @@
             <td>
                 @item.Flight_Amount
             </td>
-        </tr>
-    }
-</table>
-<h2>DisplayFlight TempData</h2>
-<table class="table">
-    @foreach (FlightData.Flight item in ViewBag.flight)
-    {
-        <tr>
             <td>
-                @item.Filght_Id
-            </td>
-            <td>
-                @item.Flight_Name
-            </td>
-            <td>
-                @item.Flight_Number
-            </td>
-            <td>
-                @item.Flight_Amount
+                @Html.ActionLink("EditFlight", "EditFlight", new { FlightId = item.Flight_Id })
+                @Html.ActionLink("Delete Flight", "DeleteFlight", new { FlightId = item.Flight_Id })
             </td>
         </tr>
     }
