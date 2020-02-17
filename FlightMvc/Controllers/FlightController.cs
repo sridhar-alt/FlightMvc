@@ -22,8 +22,11 @@ namespace FlightMvc.Controllers
             return View("AddFlight");
         }
         [HttpPost]
-        public ActionResult AddFlight(Flight flight)
+        public ActionResult AddFlightPost()
         {
+            Flight flight = new Flight();
+            //UpdateModel<Flight>(flight);
+            TryUpdateModel<Flight>(flight);
             FlightRepository.flight.Add(flight);
             TempData["message"] = "Added Successful";
             return RedirectToAction("DisplayFlight");
