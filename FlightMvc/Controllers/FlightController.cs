@@ -36,9 +36,9 @@ namespace FlightMvc.Controllers
             Flight flight=FlightRepository.FindFlightId(FlightId);
             return View(flight);
         }
-        public ActionResult UpdateFlights(Flight flight)
+        public ActionResult UpdateFlights([Bind(Include="Flightid,FlightName")]FlightEntity flight)
         {
-            FlightRepository.UpdateFlight(flight.Flight_Id, flight.Flight_Amount, flight.Flight_Name, flight.Flight_Number);
+            FlightRepository.UpdateFlight(flight);
             TempData["Message"] = "Updated Successfully";
             return RedirectToAction("DisplayFlight");
         }
